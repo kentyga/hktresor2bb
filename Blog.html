@@ -1,0 +1,308 @@
+<html><head><base href="/boutique/blog">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog - HKTresor2bb</title>
+<style>
+:root {
+  --primary-color: #FFD1DC;
+  --secondary-color: #B0E0E6;
+  --text-color: #333;
+  --background-color: #FFF5EE;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+}
+
+header {
+  background: var(--primary-color);
+  padding: 1rem 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  padding: 0 1rem;
+}
+
+nav ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.blog-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.blog-content {
+  padding: 1rem;
+}
+
+.blog-title {
+  font-size: 1.2rem;
+  margin-top: 0;
+}
+
+.blog-excerpt {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.read-more {
+  display: inline-block;
+  background: var(--primary-color);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.read-more:hover {
+  background: var(--secondary-color);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.pagination button {
+  background: var(--primary-color);
+  border: none;
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+  background: var(--secondary-color);
+}
+
+.pagination button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+footer {
+  background: var(--primary-color);
+  color: var(--text-color);
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+  
+  nav ul {
+    margin-top: 1rem;
+  }
+
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <h1>HKTresor2bb</h1>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/boutique">Boutique</a></li>
+          <li><a href="/boutique/blog">Blog</a></li>
+          <li><a href="/a-propos">À propos</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Notre Blog</h1>
+    <p>Découvrez nos derniers articles sur la parentalité, le développement de bébé et nos meilleurs conseils pour les jeunes parents.</p>
+    
+    <div class="blog-grid" id="blogGrid">
+      <!-- Les articles de blog seront ajoutés ici dynamiquement -->
+    </div>
+
+    <div class="pagination">
+      <button id="prevPage" disabled>Page précédente</button>
+      <button id="nextPage">Page suivante</button>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 HKTresor2bb. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const blogGrid = document.getElementById('blogGrid');
+    const prevPageBtn = document.getElementById('prevPage');
+    const nextPageBtn = document.getElementById('nextPage');
+
+    let currentPage = 1;
+    const postsPerPage = 6;
+
+    // Simuler une base de données d'articles de blog
+    const blogPosts = [
+      {
+        id: 1,
+        title: "Les bienfaits du portage pour bébé",
+        excerpt: "Découvrez comment le portage renforce le lien parent-enfant et favorise le développement de votre bébé.",
+        image: "https://images.unsplash.com/photo-1544126592-807ade215a0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        date: "2023-05-15"
+      },
+      {
+        id: 2,
+        title: "Alimentation de bébé : introduction des solides",
+        excerpt: "Guide complet pour débuter la diversification alimentaire en douceur et en toute sécurité.",
+        image: "https://images.unsplash.com/photo-1554684765-8f7040de0661?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        date: "2023-05-10"
+      },
+      {
+        id: 3,
+        title: "Sommeil de bébé : astuces pour des nuits paisibles",
+        excerpt: "Conseils pratiques pour établir une routine de sommeil et aider votre bébé à mieux dormir.",
+        image: "https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        date: "2023-05-05"
+      },
+      {
+        id: 4,
+        title: "Jeux et activités pour stimuler bébé",
+        excerpt: "Idées créatives pour favoriser le développement cognitif et moteur de votre enfant à travers le jeu.",
+        image: "https://images.unsplash.com/photo-1596240895248-1a425164b237?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        date: "2023-04-30"
+      },
+      {
+        id: 5,
+        title: "La sécurité à la maison avec un bébé",
+        excerpt: "Checklist essentielle pour sécuriser votre domicile et prévenir les accidents domestiques.",
+        image: "https://images.unsplash.com/photo-1588731234159-8b9963143fca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        date: "2023-04-25"
+      },
+      {
+        id: 6,
+        title: "Les étapes clés du développement de 0 à 1 an",
+        excerpt: "Comprendre et accompagner les grandes étapes du développement de votre bébé durant sa première année.",
+        image: "https://images.unsplash.com/photo-1594828701671-797fe660b8c8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        date: "2023-04-20"
+      },
+      {
+        id: 7,
+        title: "Choisir les bons vêtements pour bébé",
+        excerpt: "Guide pour sélectionner des vêtements confortables, pratiques et adaptés à chaque saison.",
+        image: "https://images.unsplash.com/photo-1517840954635-78b5c4b21f47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        date: "2023-04-15"
+      },
+      {
+        id: 8,
+        title: "L'importance du jeu libre pour le développement",
+        excerpt: "Découvrez pourquoi le jeu non structuré est crucial pour l'épanouissement de votre enfant.",
+        image: "https://images.unsplash.com/photo-1623036066540-9b10c096a35e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80",
+        date: "2023-04-10"
+      }
+    ];
+
+    // Fonction pour afficher les articles de blog
+    const displayBlogPosts = (page) => {
+      const start = (page - 1) * postsPerPage;
+      const end = start + postsPerPage;
+      const postsToDisplay = blogPosts.slice(start, end);
+
+      blogGrid.innerHTML = '';
+      postsToDisplay.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.className = 'blog-card';
+        postElement.innerHTML = `
+          <img src="${post.image}" alt="${post.title}" class="blog-image">
+          <div class="blog-content">
+            <h2 class="blog-title">${post.title}</h2>
+            <p class="blog-excerpt">${post.excerpt}</p>
+            <p>Publié le ${new Date(post.date).toLocaleDateString()}</p>
+            <a href="/boutique/blog/${post.id}" class="read-more">Lire la suite</a>
+          </div>
+        `;
+        blogGrid.appendChild(postElement);
+      });
+
+      // Mise à jour des boutons de pagination
+      prevPageBtn.disabled = page === 1;
+      nextPageBtn.disabled = end >= blogPosts.length;
+    };
+
+    // Initialisation et gestion des événements
+    displayBlogPosts(currentPage);
+
+    prevPageBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        displayBlogPosts(currentPage);
+      }
+    });
+
+    nextPageBtn.addEventListener('click', () => {
+      if (currentPage < Math.ceil(blogPosts.length / postsPerPage)) {
+        currentPage++;
+        displayBlogPosts(currentPage);
+      }
+    });
+  });
+  </script>
+</body>
+</html>

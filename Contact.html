@@ -1,0 +1,260 @@
+<html><head><base href="/boutique/blog/contact">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contactez-nous - HKTresor2bb</title>
+<style>
+:root {
+  --primary-color: #FFD1DC;
+  --secondary-color: #B0E0E6;
+  --text-color: #333;
+  --background-color: #FFF5EE;
+  --accent-color: #FF69B4;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+header {
+  background: var(--primary-color);
+  padding: 1rem 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  padding: 0 1rem;
+}
+
+nav ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+h1, h2 {
+  color: #2c3e50;
+}
+
+.contact-section {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+input, textarea {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #FF1493;
+}
+
+.contact-info {
+  margin-top: 2rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.social-links a {
+  color: var(--accent-color);
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #FF1493;
+}
+
+footer {
+  background: var(--primary-color);
+  color: var(--text-color);
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+  
+  nav ul {
+    margin-top: 1rem;
+  }
+}
+</style>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <h1>HKTresor2bb</h1>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/boutique">Boutique</a></li>
+          <li><a href="/boutique/blog">Blog</a></li>
+          <li><a href="/a-propos">À propos</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Contactez-nous</h1>
+    
+    <section class="contact-section">
+      <h2>Envoyez-nous un message</h2>
+      <form class="contact-form" id="contact-form">
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Sujet</label>
+          <input type="text" id="subject" name="subject" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit">Envoyer</button>
+      </form>
+    </section>
+
+    <section class="contact-section contact-info">
+      <h2>Informations de contact</h2>
+      <p><strong>Email:</strong> contact@hktresor2bb.com</p>
+      <p><strong>Téléphone:</strong> +33 1 23 45 67 89</p>
+      <p><strong>Adresse:</strong> 123 Rue des Bébés Heureux, 75001 Paris, France</p>
+      
+      <h3>Suivez-nous sur les réseaux sociaux</h3>
+      <div class="social-links">
+        <a href="https://www.facebook.com/hktresor2bb" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/hktresor2bb" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.twitter.com/hktresor2bb" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.pinterest.com/hktresor2bb" target="_blank" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 HKTresor2bb. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const form = document.getElementById('contact-form');
+    
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Ici, vous ajouteriez normalement le code pour envoyer le formulaire à votre backend
+      // Pour cet exemple, nous allons simplement afficher un message de confirmation
+      
+      alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
+      form.reset();
+    });
+
+    // Animation des sections au défilement
+    const animateOnScroll = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(animateOnScroll, {
+      root: null,
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.contact-section').forEach(section => {
+      section.style.opacity = 0;
+      section.style.transform = 'translateY(20px)';
+      section.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+      observer.observe(section);
+    });
+
+    // Animation des icônes sociales
+    const socialLinks = document.querySelectorAll('.social-links a');
+    socialLinks.forEach(link => {
+      link.addEventListener('mouseover', () => {
+        link.style.transform = 'scale(1.2) rotate(5deg)';
+        link.style.transition = 'transform 0.3s ease-in-out';
+      });
+      link.addEventListener('mouseout', () => {
+        link.style.transform = 'scale(1) rotate(0)';
+      });
+    });
+  });
+  </script>
+</body>
+</html>

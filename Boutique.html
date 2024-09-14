@@ -1,0 +1,273 @@
+<html><head><base href="/boutique">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boutique - HKTresor2bb</title>
+<style>
+:root {
+  --primary-color: #FFD1DC;
+  --secondary-color: #B0E0E6;
+  --text-color: #333;
+  --background-color: #FFF5EE;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+}
+
+header {
+  background: var(--primary-color);
+  padding: 1rem 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  padding: 0 1rem;
+}
+
+nav ul li a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.product-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--primary-color);
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background: var(--secondary-color);
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+}
+
+.filter-group label {
+  margin-right: 0.5rem;
+}
+
+select, input[type="text"] {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+footer {
+  background: var(--primary-color);
+  color: var(--text-color);
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+  }
+  
+  nav ul {
+    margin-top: 1rem;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    margin-bottom: 1rem;
+  }
+}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <h1>HKTresor2bb</h1>
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/boutique">Boutique</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/a-propos">À propos</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Notre Boutique</h1>
+    
+    <div class="filters">
+      <div class="filter-group">
+        <label for="category">Catégorie:</label>
+        <select id="category">
+          <option value="">Toutes</option>
+          <option value="vetements">Vêtements</option>
+          <option value="jouets">Jouets</option>
+          <option value="accessoires">Accessoires</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="price">Prix max:</label>
+        <input type="number" id="price" min="0" step="1">
+      </div>
+      <div class="filter-group">
+        <label for="search">Recherche:</label>
+        <input type="text" id="search" placeholder="Nom du produit...">
+      </div>
+    </div>
+
+    <div class="shop-grid" id="productGrid">
+      <!-- Les produits seront ajoutés ici dynamiquement -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 HKTresor2bb. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const productGrid = document.getElementById('productGrid');
+    const categorySelect = document.getElementById('category');
+    const priceInput = document.getElementById('price');
+    const searchInput = document.getElementById('search');
+
+    // Fonction pour charger et afficher les produits
+    const loadProducts = async () => {
+      try {
+        // Simule un appel API pour obtenir les produits
+        // Dans un environnement réel, remplacez ceci par un véritable appel API
+        const products = [
+          { id: 1, name: "Gigoteuse Douce", category: "vetements", price: 29.99, image: "https://m.media-amazon.com/images/I/71gYnxgwIEL._AC_UL320_.jpg", description: "Confort optimal pour le sommeil de bébé", amazonLink: "https://www.amazon.fr/dp/B07TVFNX9V" },
+          { id: 2, name: "Hochet en Bois", category: "jouets", price: 12.99, image: "https://m.media-amazon.com/images/I/71mXkRc9lnL._AC_UL320_.jpg", description: "Stimule les sens de votre bébé", amazonLink: "https://www.amazon.fr/dp/B07TVFNX9V" },
+          { id: 3, name: "Bavoir Silicone", category: "accessoires", price: 9.99, image: "https://m.media-amazon.com/images/I/71GMj0ddjKL._AC_UL320_.jpg", description: "Pratique et hygiénique pour les repas", amazonLink: "https://www.amazon.fr/dp/B07TVFNX9V" },
+          { id: 4, name: "Body Coton Bio", category: "vetements", price: 19.99, image: "https://m.media-amazon.com/images/I/61qmZpvfWOL._AC_UL320_.jpg", description: "Doux pour la peau sensible de bébé", amazonLink: "https://www.amazon.fr/dp/B07TVFNX9V" },
+          { id: 5, name: "Tapis d'Éveil", category: "jouets", price: 39.99, image: "https://m.media-amazon.com/images/I/81qznXv0jSL._AC_UL320_.jpg", description: "Stimule le développement de bébé", amazonLink: "https://www.amazon.fr/dp/B07TVFNX9V" },
+          { id: 6, name: "Biberon Anti-Coliques", category: "accessoires", price: 14.99, image: "https://m.media-amazon.com/images/I/61Rt3U9iY2L._AC_UL320_.jpg", description: "Pour des repas sereins", amazonLink: "https://www.amazon.fr/dp/B07TVFNX9V" }
+        ];
+
+        return products;
+      } catch (error) {
+        console.error('Erreur lors du chargement des produits:', error);
+        return [];
+      }
+    };
+
+    // Fonction pour afficher les produits
+    const displayProducts = (products) => {
+      productGrid.innerHTML = '';
+      products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+          <img src="${product.image}" alt="${product.name}" class="product-image">
+          <h3>${product.name}</h3>
+          <p>${product.description}</p>
+          <p>Prix: ${product.price.toFixed(2)}€</p>
+          <a href="${product.amazonLink}" class="cta-button" target="_blank" rel="noopener noreferrer">Voir sur Amazon</a>
+        `;
+        productGrid.appendChild(productCard);
+      });
+    };
+
+    // Fonction pour filtrer les produits
+    const filterProducts = (products) => {
+      const category = categorySelect.value;
+      const maxPrice = priceInput.value ? parseFloat(priceInput.value) : Infinity;
+      const searchTerm = searchInput.value.toLowerCase();
+
+      return products.filter(product => 
+        (category === '' || product.category === category) &&
+        product.price <= maxPrice &&
+        product.name.toLowerCase().includes(searchTerm)
+      );
+    };
+
+    // Initialisation et gestion des événements
+    loadProducts().then(products => {
+      displayProducts(products);
+
+      [categorySelect, priceInput, searchInput].forEach(element => {
+        element.addEventListener('change', () => {
+          const filteredProducts = filterProducts(products);
+          displayProducts(filteredProducts);
+        });
+      });
+
+      searchInput.addEventListener('input', () => {
+        const filteredProducts = filterProducts(products);
+        displayProducts(filteredProducts);
+      });
+    });
+  });
+  </script>
+</body>
+</html>
